@@ -16,7 +16,9 @@ var (
 func main() {
 	// concatenação de strings, o FMT é uma biblioteca de formatação da própria linguagem GO
 	fmt.Printf("O tipo de E é %T", e)
-	fmt.Printf("O tipo de E é %v", e)
-
-	fmt.Printf("O tipo de E é %T", f)
+	fmt.Printf(" - ")
+	fmt.Printf("O valor de E é %v", e)
+	fmt.Printf(" - ")
+	fmt.Printf("O tipo de F é %T", f)
+	fmt.Printf(" - ")
 }
