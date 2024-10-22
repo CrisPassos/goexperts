@@ -3,6 +3,7 @@ package main
 // quando eu uso o * eu estou falando que estou apontando a referencia da memória
 // passa a não ser mais uma cópia
 func soma(a, b *int) int {
+	//fez uma alteração na memória
 	*a = 50
 	return *a + *b
 }
