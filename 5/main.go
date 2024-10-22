@@ -16,6 +16,6 @@ func main() {
 	fmt.Println("-----FOR-----")
 	for i, v := range meuArray {
 		//%d é usado para dígito
-		fmt.Printf("O indice é %d e o valor é %d", i, v)
+		fmt.Printf("O indice é %d e o valor é %d\n", i, v)
 	}
 }
