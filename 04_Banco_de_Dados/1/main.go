@@ -28,19 +28,24 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	// insert a product
 	product := NewProduct("Notebook", 1000)
 	insertProduct(db, product)
 
+	//update a product
 	product.Price = 100
 	updateProduct(db, product)
 	defer db.Close()
 
+	//seleciona um produto
 	p, err := selectProduct(db, product.ID)
 	if err != nil {
 		panic(err)
 	}
 	fmt.Printf("Product: %v, possui o preço de %.2f", p.Name, p.Price)
 
+	//seleciona todos os produtos
 	products, err := selectAllProducts(db)
 	if err != nil {
 		panic(err)
@@ -49,6 +54,9 @@ func main() {
 	for _, p := range products {
 		fmt.Printf("2 - Product: %v, possui o preço de %.2f\n", p.Name, p.Price)
 	}
+
+	//delete a product
+	deleteProduct(db, product.ID)
 }
 
 func insertProduct(db *sql.DB, product *Product) error {
@@ -126,4 +134,21 @@ func selectAllProducts(db *sql.DB) ([]Product, error) {
 	}
 
 	return products, nil
+}
+
+func deleteProduct(db *sql.DB, id string) error {
+	stmt, err := db.Prepare("delete from products where id = ?")
+
+	if err != nil {
+		return err
+	}
+
+	defer stmt.Close()
+	_, err = stmt.Exec(id)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
