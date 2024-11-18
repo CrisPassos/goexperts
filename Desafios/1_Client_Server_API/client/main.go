@@ -2,18 +2,24 @@ package main
 
 import (
 	"1_Client_Server_API/shared"
+	"context"
 	"encoding/json"
 	"fmt"
 	"html/template"
 	"io"
 	"net/http"
 	"os"
+	"time"
 )
 
 func main() {
+	ctx := context.Background()
+	ctx, cancel := context.WithTimeout(ctx, 300*time.Millisecond)
+	defer cancel()
+
 	// Open a connection with /server
 	c := http.Client{}
-	req, err := http.NewRequest("GET", "http://localhost:8080/cotacao", nil)
+	req, err := http.NewRequestWithContext(ctx, "GET", "http://localhost:8080/cotacao", nil)
 	HandleError(err)
 
 	req.Header.Set("Accept", "Application/json")
