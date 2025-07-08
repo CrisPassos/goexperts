@@ -49,7 +49,7 @@ Ano 2025.
 - Deploy simples (deploy de um arquivo binário).
 - Baixa curva de aprendizagem.
 
-## links
+## Links
 
 - https://go.dev
 - https://github.com/devfullcycle/goexpert
