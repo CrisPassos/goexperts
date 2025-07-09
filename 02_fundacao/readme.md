@@ -43,6 +43,17 @@ Aula de Fundação do Go(lang):
   - Key/Value, sem ordenação necessariamente
 
 - Funções
+- Funções variádicas
+
+  - trabalha com parametros infinitos, quando não sabemos quantos parametros vamos passar
+  - usamos o ... para fazer isso
+
+- Closures
+
+  - Funçoes anonimas
+  - ter funcoes dentro de outra
+
+- Iniciando com Structs
 
 ## Commands
 
