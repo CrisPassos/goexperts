@@ -12,15 +12,26 @@ Aula de Configuração de Ambiente
 
 ## Commands
 
-- `go version`
-  - mostra a versao do GO
-- `go env`
-  - varíaveis de ambiente importantes para o GO
-  - GOPATH: pasta onde os binários ficam após compilado
-  - GOMODCACHE: gerenciamento de depedencias do GO
-  - Se por acaso o GOPath estiver em branco devemos configura-los nas variaveis de ambiente
-- `go run main.go`
-  - executa o arquivo main.go
+```
+go version
+```
+
+- mostra a versao do GO
+
+```
+go env
+```
+
+- varíaveis de ambiente importantes para o GO
+- GOPATH: pasta onde os binários ficam após compilado
+- GOMODCACHE: gerenciamento de depedencias do GO
+- Se por acaso o GOPath estiver em branco devemos configura-los nas variaveis de ambiente
+
+```
+go run main.go
+```
+
+- executa o arquivo main.go
 
 ## Links
 
@@ -31,3 +42,11 @@ Aula de Configuração de Ambiente
 ## Extensões
 
 - GO (Go Team at Google)
+
+```
+
+```
+
+```
+
+```
