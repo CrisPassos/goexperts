@@ -33,6 +33,17 @@ Aula de Fundação do Go(lang):
 
 - Slices
 
+  - "arrays infinitos""
+  - dividos em ponteiro, tamanho e capacidade
+  - por de trás dos panos trabalha com arrays
+
+- Maps
+
+  - HashTables
+  - Key/Value, sem ordenação necessariamente
+
+- Funções
+
 ## Commands
 
 ```
