@@ -14,6 +14,25 @@ Aula de Fundação do Go(lang):
 
 - Criação de tipos
 
+  - criação dos próprios tipos, além dos nativos
+  - utilizamos a palavra reservada `type``
+  - podemos usar uma lib externa para criar os tipos
+
+- Importando fmt e tipagem
+
+  - library fmt é padrão do GO
+  - %d - digito
+  - %v - string
+  - \n - pula linha
+
+- Percorrendo Arrays
+
+  - array, trabalha como varíavel com tamanho fixo que deve ser percorrido
+  - len() método nativo que conta o tamanho do array
+  - normalmente não trabalhamos muito com array e sim Slices
+
+- Slices
+
 ## Commands
 
 ```
