@@ -77,6 +77,53 @@ Aula de Fundação do Go(lang):
 
 - Interfaces
 
+  - Interfaces são um conjunto de métodos que um tipo deve implementar
+  - Elas permitem definir comportamentos sem especificar a implementação exata
+  - É possível criar interfaces para agrupar diferentes tipos que compartilham comportamentos comuns
+  - A interface é como se fosse um implements
+  - Qualquer CLiente que tenha o método desativar vai implmentar a interface Pessoa
+  - Possiblidade de usar diversos tipos de uma forma mais simples
+  - Poder de abstração, encapsulamento e polimorfismo
+  - A interface do Go so permite assinatura de métodos, não permite atributos
+
+- Ponteiros
+
+  - Ponteiros são variáveis que armazenam o endereço de memória de outra variável
+  - Eles permitem manipular diretamente a memória, o que pode ser útil para otimizar o desempenho
+  - É possível criar ponteiros para tipos primitivos e structs
+  - O operador `&` é usado para obter o endereço de uma variável, enquanto `*` é usado para desreferenciar um ponteiro
+  - É bastante simples usar ponteiros no GO
+  - Pondeito = Memória -> Endereço -> Valor
+  - toda vez que usamos `*` estamos apontando para o endereço de memória
+  - usamos ponteiros para não duplicar a memória, economizando recursos, funciona como um cache, escopo global
+  - ponteiros são passados por referência, o que significa que as alterações feitas em uma variável apontada por um ponteiro afetam a variável original
+  - diferente de outras linguagens, eu não vou buscar o valor da variavel, eu vou buscar o uso do endereço de memória
+
+- Quando usar ponteiros
+
+  - Quando você precisa modificar o valor de uma variável dentro de uma função
+  - Quando você deseja economizar memória, evitando a cópia de grandes estruturas de dados
+  - Quando você precisa compartilhar dados entre diferentes partes do código sem duplicação
+  - Quando eu vou fazer apenas uma cópia dos dados eu não preciso de ponteiros
+  - Se eu quero valores mutaveis eu trabalho com ponteiros
+
+- Ponteiros e Structs
+
+  - Ponteiros são especialmente úteis ao trabalhar com structs, pois permitem modificar os campos de uma struct sem criar cópias desnecessárias
+  - Ao passar um ponteiro para uma função, você pode alterar os valores dos campos da struct diretamente
+  - Isso é útil para evitar a duplicação de grandes estruturas de dados e melhorar o desempenho do programa
+
+- Interfaces Vazias
+
+  - Interfaces vazias são um recurso poderoso do Go que permite trabalhar com qualquer tipo de dado
+  - solução usada antes do generics
+  - parece como se fosse o "any"
+
+- Type assertation
+  - Type assertion é uma maneira de verificar o tipo de uma variável em tempo de execução
+  - É útil quando você trabalha com interfaces vazias e precisa garantir que um valor tenha um tipo específico
+  - A sintaxe é `value.(Type)`, onde `value` é a variável e `Type` é o tipo esperado
+
 ## Commands
 
 ```
