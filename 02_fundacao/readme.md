@@ -120,9 +120,20 @@ Aula de Fundação do Go(lang):
   - parece como se fosse o "any"
 
 - Type assertation
+
   - Type assertion é uma maneira de verificar o tipo de uma variável em tempo de execução
   - É útil quando você trabalha com interfaces vazias e precisa garantir que um valor tenha um tipo específico
   - A sintaxe é `value.(Type)`, onde `value` é a variável e `Type` é o tipo esperado
+  - Foca um tipo específico, se não for o tipo esperado vai gerar um panic
+
+- Generics
+
+  - Generics são uma maneira de escrever código que pode trabalhar com diferentes tipos de dados sem duplicação
+  - Eles permitem criar funções e tipos que podem operar em qualquer tipo, mantendo a segurança de tipo
+  - A sintaxe é `func Name[T any](param T)`, onde `T` é um tipo genérico
+  - É possível usar generics para criar funções e estruturas de dados reutilizáveis
+
+- Pacotes e módulos
 
 ## Commands
 
