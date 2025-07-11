@@ -135,10 +135,76 @@ Aula de Fundação do Go(lang):
 
 - Pacotes e módulos
 
+  - Pacotes são unidades de código reutilizáveis que podem ser importadas em outros programas
+  - Módulos são coleções de pacotes que podem ser versionados e gerenciados
+  - O Go usa o sistema de módulos para gerenciar dependências e versões de pacotes
+  - É possível criar pacotes personalizados e compartilhá-los com a comunidade
+  - por padrão o main é o package principal, mas podemos criar outros packages
+  - usamos o comando `go mod init` para iniciar um módulo
+  - a primeira coisa que fazemos é criar noss mod atraves do comando `go mod init` + nome do módulo
+  - apos o comando é criado uma pasta chamada go.mod
+  - após a criação do modulo executamos o comando `go mod tidy` para organizar as dependências
+  - para importar o pacote usamos algo assim "github.com/goexperts/cursos/math"
+  - para usar o método dentro do pacote fazemos, por exemplo, `math.Sum(1, 2)`
+  - quando usamos a primeira letra do metodo em maiúsculo, estamos exportando o método, tornando-o público, caso usemos a primeira letra em minúsculo, o método não será exportado, ou seja, não será visível fora do pacote
+
+- Instalando pacotes
+
+  - O GO não tem um npm install
+  - Pegamos as libraries diretamente do github
+  - Para instalar uma library usamos o comando `go get github.com/usuario/repo`
+  - go.sum é pareciso com o package-lock.json do npm, ele guarda as versões das dependências
+  - ao rodar o go mod tidy, ele verifica se estamos usandos todos os pacotes estão em uso, caso contrário ele remove do go.mod e do go.sum
+
+- Loops
+
+  - O Go não possui uma estrutura de loop tradicional como `for`, `while` ou `do-while`
+  - A única estrutura de loop é o `for`, que pode ser usado de várias maneiras
+  - O loop `for` pode ser usado com uma condição, um contador ou percorrendo elementos de uma coleção
+  - Exemplo: `for i := 0; i < 10; i++ {}`
+
+- Condicionais
+
+  - O Go possui estruturas condicionais como `if`, `else if` e `else`
+  - A sintaxe é semelhante a outras linguagens, mas não usa parênteses para as condições
+  - Exemplo: `if x > 10 { ... } else { ... }`
+  - No GO não existe else if, usamos apenas if e else
+
+- Compilando projeto
+
+  - O Go é uma linguagem compilada, o que significa que o código-fonte é convertido em código de máquina antes de ser executado
+  - Para compilar um projeto, usamos o comando `go build`
+  - O resultado é um executável que pode ser executado diretamente no sistema operacional
+  - O nome do executável será o nome do diretório onde o código está localizado
+  - O GO tem um Runtime, que é o responsável por executar o código compilado
+  - Runtime = Meu Código = Binário
+  - todas as dependencias estão no runtime
+  - eu consigo escolher o tipo de runtime que eu quero usar, por exemplo, se eu quero rodar no windows ou linux
+  - para isso usamos o comando `GOOS=linux GOARCH=amd64 go build` para compilar para linux, por exemplo
+
 ## Commands
 
 ```
-  comand
+  go mod init
+```
+
+```
+  go mod tidy
+```
+
+```
+  go build
+```
+
+```
+  go env
+```
+
+```
+  GOOS=windows go build main.go
 ```
 
 ## Links
+
+- github.com/google/uuid
+- https://www.digitalocean.com/community/tutorials/building-go-applications-for-different-operating-systems-and-architectures
