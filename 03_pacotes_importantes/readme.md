@@ -45,7 +45,23 @@ Aula de Pacotes Importantes do Go(lang):
   - Vamos usar o ResponseWriter para escrever a resposta HTTP
   - HandleFunc para definir rotas e métodos HTTP
 
--
+- Manipulando Headers
+
+  - Todas as requisições HTTP possuem headers
+  - Headers são metadados que descrevem a requisição ou resposta
+  - Podemos manipular headers usando o ResponseWriter
+
+- Criando funções para BuscaCep
+
+  - Vamos criar uma função que recebe o CEP como parâmetro
+  - A função irá buscar o CEP e retornar os dados em formato JSON
+  - Vamos usar a biblioteca `encoding/json` para serializar os dados
+
+- Finalizando resposta para o servidor HTTP
+
+  - Vamos finalizar a resposta HTTP com o status code 200 OK
+  - Usar o ResponseWriter para escrever os dados JSON na resposta
+  - Garantir que o Content-Type seja application/json
 
 ## Commands
 
@@ -56,3 +72,4 @@ Aula de Pacotes Importantes do Go(lang):
 ## Links
 
 - converter o JSON retornado em uma struct https://transform.tools/json-to-go
+- extensão Thunder Client para testar APIs (https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)
