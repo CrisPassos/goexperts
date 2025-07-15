@@ -126,6 +126,21 @@ Aula de Pacotes Importantes do Go(lang):
 
 - Trabalhanco com POST
 
+  - Usamos o método Post
+  - Para passar o body usamos um slice de bytes, essa é a grande diferença
+
+- Customizando Request
+
+  - usamos o metódo NewRequest para fazer isso
+  - podemos colocar headers e mais customização
+  - usamos o metódo DO também
+  - usar baer token
+
+- Trabalhando com HTTP usando Contextos
+  - Pacote de contexto, permite passar as informações para diversas chamadas no sistemas
+  - Podemos cancelar contextos
+  - Usamos os contextos principalmente quando estamos trabalhando com contexto
+
 ## Commands
 
 ```
@@ -136,3 +151,4 @@ Aula de Pacotes Importantes do Go(lang):
 
 - converter o JSON retornado em uma struct https://transform.tools/json-to-go
 - extensão Thunder Client para testar APIs (https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)
+- documentação de templates: https://pkg.go.dev/html/template
