@@ -63,6 +63,33 @@ Aula de Pacotes Importantes do Go(lang):
   - Usar o ResponseWriter para escrever os dados JSON na resposta
   - Garantir que o Content-Type seja application/json
 
+- ServeMux
+
+  - ServeMux é um multiplexer de requisições HTTP
+  - Permite definir rotas e métodos HTTP de forma organizada
+  - Usar ServeMux para gerenciar diferentes endpoints da API
+  - Toda vez que eu dou um ListenAndServe, eu subo um multiplexer padrão do GO
+  - O Multiplexer padrão do GO é simples, mas podemos criar o nosso próprio multiplexer atraves do ServeMux
+  - Usamos o ServerMux quando queremos criar novas rotas e endpoints para a nossa API, adicionar um novo handler, etc.
+
+- FileServer
+
+  - FileServer é um handler que serve arquivos estáticos
+  - Podemos usar o FileServer para servir arquivos de um diretório específico
+  - Útil para servir arquivos como HTML, CSS, JS, imagens, etc.
+  - Vamos usar o FileServer para servir arquivos estáticos da nossa aplicação
+  - Trabalhamos com arquivos estáticos, como HTML, CSS, JS, imagens, etc.
+
+- Iniciando com templates
+
+  - Vamos iniciar com templates para renderizar HTML dinâmico
+  - Usar a biblioteca `html/template` para trabalhar com templates
+  - Criar templates HTML e renderizar dados dinâmicos neles
+  - HTML dinamico, com dados dinâmicos da base de dados
+  - Por exemplo, emails personalizados, páginas web dinâmicas, etc.
+
+- Template Must
+
 ## Commands
 
 ```
