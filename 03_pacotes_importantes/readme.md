@@ -106,6 +106,26 @@ Aula de Pacotes Importantes do Go(lang):
 
 - Compondo Templates
 
+  - Criando diversas páginas onde só muda o conteúdo
+  - Matém cria um header, body, conteudo, etc...
+
+- Mapeando funções nos templates
+
+  - usando html/template
+  - usar o HTML sabemos que a informação vai ser parseada do tipo html
+  - isso evita ataques, além de ser o padrão
+  - serve para fazer transformações ou executar algumas ações
+  - podemos usar as funções
+  - Funciona como os pipes do angular
+
+- HTTPClient com Timeout
+
+  - Fazendo requisições externas com o HTTP (GET, POST, DELETE, PUT)
+  - Quando trabalhamos com sistemas precisamos pensar em como deixar o sistema performática
+  - Devemos estabelecer os limites de chamadas externas
+
+- Trabalhanco com POST
+
 ## Commands
 
 ```
