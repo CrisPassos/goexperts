@@ -90,6 +90,22 @@ Aula de Pacotes Importantes do Go(lang):
 
 - Template Must
 
+  - Template permite que o erro e o sucesso volte no mesmo local
+  - Facilita na parte de criação de erros
+  - É uma função auxiliar da biblioteca text/template usada para encapsular erros de parsing de template
+
+- Templates com arquivos externo
+
+  - Criação de um arquivo externo para mostrar as informações dinamicas
+  - Comunicação entre o ficheiro go e html
+
+- Templates com Webserver
+
+  - Vamos fazer tudo o que estamos fazendo, mas em um webserver
+  - Utilizado para quando queremos trabalhar com arquivos e não somente webservers
+
+- Compondo Templates
+
 ## Commands
 
 ```
