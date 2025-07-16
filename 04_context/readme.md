@@ -24,10 +24,18 @@ Aula de Contexto do Go(lang):
 
 - Context no lado Client
 
+  - vamos trabalhar com um client e o server, já temos nosso server e agora vamos criar nosso cliente
+  - é possível controlar o contexto do lado do cliente e do server
+
+- Context WithValue
+  - Trabalharemos com Key/Value
+  - O contexto pode passar valores de um lado para o outro
+  - Informações de metadados, em vez de passar por funções posso passar as coisas via contexto
+
 ## Commands
 
 ```
-    command
+    curl localhost:8080
 ```
 
 ## Links
