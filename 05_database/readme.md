@@ -74,7 +74,38 @@ Aula de como usar Banco de dados no Go(lang):
   - nenhum registro é deletado, apenas arquivado
 
 - Belongs TO
-  -
+
+  - Trabalhando com relacionamentos
+  - Relacionamento entre Tabelas
+  - Eu tenho um produto que pertence a uma categoria
+  - Um produto que pertence a varias categorias
+
+- Has One
+
+  - Relação um para um
+  - um livro tem um unico isbn
+
+- Has Many
+
+  - Quando um registro pode ter mais de um outro tabela
+  - Uma categoria pode ter muito produtos
+
+- Pegadinha no has Many
+
+  - Como trabalhar com Has Many e Has One juntos
+
+- Many To Many
+
+  - Uma Table pode estar em diferentes tabelas e vice e versa
+  - precisamos de uma tabela intermediaria
+
+- Lock otimista vs Pessimista
+  - Bloqueio pessimista vs lock otimista
+  - lock otimista, versiona quando alguém está fazendo uma alteração no sistemas
+  - fazemos os locks quando vamos fazer muitas transações quando náo há muitas concorrência
+  - Lock pessimista: lockar a tabela, não deixa mais ninguém alterar, isso é feito através da base de dados, para resolver problemas com concorrências
+  - para trabalhar com grandes aplicações
+  - Nesse exemplos vamos trabalhar com o cenário pessimista usando o GORM
 
 ## Commands
 
