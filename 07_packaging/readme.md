@@ -25,7 +25,27 @@ Aula de Packaging no Go(lang):
   - usamos as regras para definir o que é exportado ou não
 
 - Entendendo GO MOD
--
+
+  - go mod tidy analiza todo o projeto e verifica os pacotes existentes, caso ainda sejam existentes e em uso ele vai no github e instal tudo
+  - funciona como o package.json
+  - go.sum é como o package-lock.json
+  - outra forma de instalar é atraves do go get
+
+- Trabalhando com GO MOD replace
+
+  - Trabalhando com go mod diferentes
+  - vide projeto
+  - Quando preciso usar o go mod de um projeto que estou desenvolvendo
+  - A primeira alternativa é rodar o comando -replace
+  - O problema com o replace é pq quando for publicar eu vou ter problemas
+
+- Usando Workspaces
+  - Recurso para trabalhar com MONOREPO
+  - Trabalhando com Workspaces, antes de publicar as libraries
+  - Trabalhar com workspaces locais
+  - criamos um ficheiro chamado go.work
+  - Go Workspace é algo independente do sistema
+  - Para executar o go mod tidy com o workspace, devemos usar o go get, publicar no github ou executar o go mod tidy -e
 
 ## Commands
 
@@ -33,6 +53,36 @@ Aula de Packaging no Go(lang):
 
 ```
     go mod init github.com/CrisPassos/goexperts/tree/main/07_packaging/01_introduzindo_go_mod
+```
+
+- Instala as depedencias
+
+```
+    go mod tidy
+```
+
+- Adicionando uma library através do Go GET
+
+```
+    go get github.com/google/uuid
+```
+
+- Replace (substitui o caminho relativo pelo diretorio)
+
+```
+    go mod edit -replace github.com/CrisPassos/goexperts/tree/main/07_packaging/03/math=../math
+```
+
+- Permite criar um workspace na raiz do diretório
+
+```
+    go work init ./math ./system
+```
+
+- Ignora os pacotes que não foram achados, usados para o go workspace
+
+```
+    go mod tidy -e
 ```
 
 ## Links
