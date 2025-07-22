@@ -34,9 +34,14 @@ Aula de Testing no Go(lang):
   - Tenta quebrar os padrões colocando os valores máximos e minimos nos testes
 
 - Iniciando com Testify
+
   - Library do Go (lang) para testes
   - Pacote bem famoso no processo de testes
   - aqui usamos os assets
+
+- Trabalhando com Mocks
+  - usando a library do testify
+  -
 
 ## Commands
 
@@ -91,3 +96,5 @@ Aula de Testing no Go(lang):
 ```
 
 ## Links
+
+- github.com/stretchr/testify

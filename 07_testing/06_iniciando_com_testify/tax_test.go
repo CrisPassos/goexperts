@@ -13,6 +13,6 @@ func TestCalculate(t *testing.T) {
 	assert.Equal(t, 10.0, tax)
 
 	tax, err = CalculateTax(0)
-	assert.Error(t, err, "Opa temos um error")
+	assert.Error(t, err, "opa temos um error")
 	assert.Equal(t, 0.0, tax)
 }
