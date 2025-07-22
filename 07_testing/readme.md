@@ -30,6 +30,14 @@ Aula de Testing no Go(lang):
 
 - Fuzzing
 
+  - Testes de mutação, gera resultados experados aleatoriamente para testar os mais diferentes casos
+  - Tenta quebrar os padrões colocando os valores máximos e minimos nos testes
+
+- Iniciando com Testify
+  - Library do Go (lang) para testes
+  - Pacote bem famoso no processo de testes
+  - aqui usamos os assets
+
 ## Commands
 
 - Commandos para executar os testes
@@ -68,6 +76,18 @@ Aula de Testing no Go(lang):
 
 ```
     go help test
+```
+
+- Rodar o FUZZ
+
+```
+    go test -fuzz=.
+```
+
+- Rodar somente o FUZZ sem rodar os outros testes
+
+```
+    go test -fuzz=. -run=ˆ#
 ```
 
 ## Links
