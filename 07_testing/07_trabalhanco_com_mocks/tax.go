@@ -16,7 +16,7 @@ func CalculateTaxAndSave(amount float64, repository Repository) error {
 
 func CalculateTax(amount float64) (float64, error) {
 	if amount <= 0 {
-		return 0.0, errors.New("Opa temos um error")
+		return 0.0, errors.New("opa temos um error")
 	}
 
 	if amount >= 1000 && amount < 20000 {
