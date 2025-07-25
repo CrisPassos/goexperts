@@ -50,6 +50,10 @@ Aula de Apis no Go(lang):
 - Testando criação do usuário
 - Finalizando teste de UserDB
 - Criando Principais métodos de PRODUCTDB
+- Criando FindAll com paginação
+- Testando ProductDB
+- Finalizando testes de ProductDB
+- Criando Handlers para criar produto
 
 ## Commands
 
