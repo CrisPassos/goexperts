@@ -44,10 +44,12 @@ Aula de Apis no Go(lang):
   - usamos o bcript que gera um hash para salvar a senha, jamais salvamos a senha pura e sim através de hash
 
 - Testando User
-
-  - Vide Code
-
 - Criando entidade Product
+- Testando Product
+- Criando UserDB
+- Testando criação do usuário
+- Finalizando teste de UserDB
+- Criando Principais métodos de PRODUCTDB
 
 ## Commands
 
