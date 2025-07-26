@@ -3,6 +3,7 @@ module github.com/CrisPassos/goexperts/08_apis
 go 1.24.4
 
 require (
+	github.com/go-chi/chi v1.5.1
 	github.com/go-chi/jwtauth v1.2.0
 	github.com/google/uuid v1.6.0
 	github.com/spf13/viper v1.20.1

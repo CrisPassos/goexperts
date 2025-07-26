@@ -54,15 +54,34 @@ Aula de Apis no Go(lang):
 - Testando ProductDB
 - Finalizando testes de ProductDB
 - Criando Handlers para criar produto
+  - Para esse exemplo vamos criar uma camada diretamente para conexão com os dados
+- Testando endpoint de criação de Product
+- Ajustando package para os handlers
+- Web frameoworks vc Frameworks
+  - O mux padrão do Go(lang) não permite trabalhar com variaveis dentro das URLs
+  - Roteadores implementações que permite criar URLs mais dinamicas, ou adicionar server
+  - Frameoworks: echoes, fiber (parecido com o node), gin gonic
+  - Frameworks: preocupados com manter na natividade e ajudar no padrão de desenvolvimento, tipo laravel: exemplos buffalo
+- Roteadores
+  - para esse projeto vamos usar roteadores, o roteador implementa interfaces para nosso mux server
+  - apenas com o roteador conseguimos usar todas as assinaturas do GO, o mais tradicional é o GorilaMux
+  - O roteador trabalha com as rotas e handler e depois passamos para o roteador
+  - vamos usar o go chi
 
 ## Commands
 
-- Commandos
+- Acessar o SQLit3
 
 ```
-    go test .
+    sqlite3 test.db
 ```
 
 ## Links
 
 - https://github.com/golang-standards/project-layout
+- https://echo.labstack.com
+- https://gofiber.io
+- https://gin-gonic.com
+- https:/gobuffalo.io
+- https://www.gorillatooklkit.go
+- http://github.com/go-chi/chi
