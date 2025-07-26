@@ -7,6 +7,8 @@ import (
 	"github.com/CrisPassos/goexperts/08_apis/infra/database"
 	"github.com/CrisPassos/goexperts/08_apis/internal/dto"
 	"github.com/CrisPassos/goexperts/08_apis/internal/entity"
+	entityPKG "github.com/CrisPassos/goexperts/08_apis/pkg/entity"
+	"github.com/go-chi/chi"
 )
 
 // vamos criar um handler que vai se comunicar com a base de dados
@@ -46,4 +48,65 @@ func (h *ProductHandler) CreateProduct(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusCreated)
+}
+
+// buscando o produto por id através do parametro e usando go-chi
+func (h *ProductHandler) GetProduct(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+
+	if id == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	product, err := h.ProductDB.FindById(id)
+
+	if err != nil {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+
+	w.Header().Set("Content-Type", "assplication/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(product)
+
+}
+
+// implementando o UPDATE
+func (h *ProductHandler) UpdateProduct(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+
+	if id == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	var product entity.Product
+	err := json.NewDecoder(r.Body).Decode(&product)
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	product.ID, err = entityPKG.ParseID(id)
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	_, err = h.ProductDB.FindById(id)
+	if err != nil {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+
+	err = h.ProductDB.Update(&product)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
+
 }

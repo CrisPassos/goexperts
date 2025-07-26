@@ -33,5 +33,10 @@ func main() {
 	//posso setar um logger aqui se quiser
 	r.Use(middleware.Logger)
 	r.Post("/products", productHandler.CreateProduct)
+
+	//registrando a rota com iD
+	r.Get("/products/{id}", productHandler.GetProduct)
+	r.Put("/products/{id}", productHandler.UpdateProduct)
+
 	http.ListenAndServe(":8080", r)
 }

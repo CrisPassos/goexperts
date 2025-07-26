@@ -67,6 +67,8 @@ Aula de Apis no Go(lang):
   - apenas com o roteador conseguimos usar todas as assinaturas do GO, o mais tradicional é o GorilaMux
   - O roteador trabalha com as rotas e handler e depois passamos para o roteador
   - vamos usar o go chi
+- Buscando e alterando products
+- Listando e removendo Produtos
 
 ## Commands
 
