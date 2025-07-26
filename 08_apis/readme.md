@@ -69,6 +69,12 @@ Aula de Apis no Go(lang):
   - vamos usar o go chi
 - Buscando e alterando products
 - Listando e removendo Produtos
+- Criando User
+- Falando sobre JWT
+  - vamos gerar um token JWT
+  - gera um token divido em tres partes header/dados que eu passo ou payload/assinatura(sua chave secreta)
+- Gerando token JWT
+- Protegendo products
 
 ## Commands
 
@@ -87,3 +93,4 @@ Aula de Apis no Go(lang):
 - https:/gobuffalo.io
 - https://www.gorillatooklkit.go
 - http://github.com/go-chi/chi
+- https://jwt.io
