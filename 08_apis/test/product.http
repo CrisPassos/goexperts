@@ -7,6 +7,9 @@ Content-Type: application/json
 }
 
 ###
+GET http://localhost:8080/products HTTP/1.1
+
+###
 GET http://localhost:8080/products/6c986478-1b10-44fd-958c-5080c97dfd62 HTTP/1.1
 
 ###
@@ -17,3 +20,6 @@ Content-Type: application/json
   "name": "Product Name UPDATED",
   "price": 200
 }
+
+###
+DELETE http://localhost:8080/products/6c986478-1b10-44fd-958c-5080c97dfd62 HTTP/1.1

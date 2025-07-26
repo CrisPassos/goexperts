@@ -37,6 +37,8 @@ func main() {
 	//registrando a rota com iD
 	r.Get("/products/{id}", productHandler.GetProduct)
 	r.Put("/products/{id}", productHandler.UpdateProduct)
+	r.Delete("/products/{id}", productHandler.DeleteProduct)
+	r.Get("/products", productHandler.GetAllProducts)
 
 	http.ListenAndServe(":8080", r)
 }
