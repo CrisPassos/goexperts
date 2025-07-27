@@ -77,6 +77,7 @@ Aula de Apis no Go(lang):
 - Protegendo products
   - Usando Bearer Token
 - Criando e trabalhando com middlewares
+- Iniciando com documentação da API
 
 ## Commands
 

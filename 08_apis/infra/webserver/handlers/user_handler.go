@@ -13,20 +13,18 @@ import (
 
 type UserHandler struct {
 	UserDB database.UserInterface
-	//middleware do CHI para autenticação JWT
-	Jwt          *jwtauth.JWTAuth
-	JwtExpiresIn int
 }
 
-func NewUserHandler(userDB database.UserInterface, jwt *jwtauth.JWTAuth, JwtExpiresIn int) *UserHandler {
+func NewUserHandler(userDB database.UserInterface) *UserHandler {
 	return &UserHandler{
-		UserDB:       userDB,
-		Jwt:          jwt,
-		JwtExpiresIn: JwtExpiresIn,
+		UserDB: userDB,
 	}
 }
 
 func (h *UserHandler) GetJWT(w http.ResponseWriter, r *http.Request) {
+	jwt := r.Context().Value("jwt").(*jwtauth.JWTAuth)
+	jwtExpiresIn := r.Context().Value("JwtExpiresIn").(int)
+
 	var user dto.GetJWTInput
 	err := json.NewDecoder(r.Body).Decode(&user)
 
@@ -41,9 +39,9 @@ func (h *UserHandler) GetJWT(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, tokenString, err := h.Jwt.Encode(map[string]interface{}{
+	_, tokenString, err := jwt.Encode(map[string]interface{}{
 		"sub": u.ID.String(),
-		"exp": time.Now().Add(time.Second * time.Duration(h.JwtExpiresIn)).Unix(),
+		"exp": time.Now().Add(time.Second * time.Duration(jwtExpiresIn)).Unix(),
 	})
 
 	accesseToken := struct {

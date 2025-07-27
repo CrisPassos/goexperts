@@ -30,11 +30,15 @@ func main() {
 	productDB := database.NewProduct(db)
 	productHandler := handlers.NewProductHandler(productDB)
 	userDB := database.NewUser(db)
-	userHandler := handlers.NewUserHandler(userDB, configs.TokenAuth, configs.JWTExpiresIn)
+	userHandler := handlers.NewUserHandler(userDB)
 
 	r := chi.NewRouter()
 	//posso setar um logger aqui se quiser
 	r.Use(middleware.Logger)
+
+	//trabalhando com middleware
+	r.Use(middleware.WithValue("jwt", configs.TokenAuth))
+	r.Use(middleware.WithValue("JwtExpiresIn", configs.JWTExpiresIn))
 
 	//agrupando rotas de produtos
 	r.Route("/products", func(r chi.Router) {
