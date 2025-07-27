@@ -4,16 +4,35 @@ import (
 	"net/http"
 
 	"github.com/CrisPassos/goexperts/08_apis/configs"
+	_ "github.com/CrisPassos/goexperts/08_apis/docs"
 	"github.com/CrisPassos/goexperts/08_apis/infra/database"
 	"github.com/CrisPassos/goexperts/08_apis/infra/webserver/handlers"
 	"github.com/CrisPassos/goexperts/08_apis/internal/entity"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/jwtauth"
+	httpSwagger "github.com/swaggo/http-swagger"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
+/// @title           Go Expert API Example
+// @version         1.0
+// @description     Product API with auhtentication
+// @termsOfService  http://swagger.io/terms/
+
+// @contact.name   Wesley Willians
+// @contact.url    http://www.fullcycle.com.br
+// @contact.email  atendimento@fullcycle.com.br
+
+// @license.name   Full Cycle License
+// @license.url    http://www.fullcycle.com.br
+
+// @host      localhost:8000
+// @BasePath  /
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
 func main() {
 	configs, err := configs.LoadConfig("./")
 	if err != nil {
@@ -33,6 +52,10 @@ func main() {
 	userHandler := handlers.NewUserHandler(userDB)
 
 	r := chi.NewRouter()
+	r.Use(middleware.AllowContentType("application/json"))
+	r.Use(middleware.SetHeader("Access-Control-Allow-Origin", "*"))
+	r.Use(middleware.SetHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"))
+	r.Use(middleware.SetHeader("Access-Control-Allow-Headers", "Content-Type, Authorization"))
 	//posso setar um logger aqui se quiser
 	r.Use(middleware.Logger)
 
@@ -63,5 +86,9 @@ func main() {
 	r.Post("/users", userHandler.CreateUser)
 	r.Post("/users/generate_token", userHandler.GetJWT)
 
+	r.Get("/docs/*", httpSwagger.Handler(
+		httpSwagger.URL("http://localhost:8080/docs/doc.json"), // The url pointing to API definition
+	))
 	http.ListenAndServe(":8080", r)
+
 }

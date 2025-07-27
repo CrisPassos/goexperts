@@ -78,6 +78,15 @@ Aula de Apis no Go(lang):
   - Usando Bearer Token
 - Criando e trabalhando com middlewares
 - Iniciando com documentação da API
+  - Uso de Swagger, OpenAPI
+  - usaremos o swaggo, primeiro vamos dar um go install em vez do go get
+  - vamos fazer o download do arquivo binário
+  - adicionar nas variavies de ambiente nos paths
+- Gerando primeira documentação
+- Acessando swagger pela primeira vez
+- Documentação criação do User
+- Trabalhando na geração do access token
+- Criando e listando product
 
 ## Commands
 
@@ -85,6 +94,12 @@ Aula de Apis no Go(lang):
 
 ```
     sqlite3 test.db
+```
+
+- Para achar o GoPATH
+
+```
+   go env
 ```
 
 ## Links
@@ -97,3 +112,5 @@ Aula de Apis no Go(lang):
 - https://www.gorillatooklkit.go
 - http://github.com/go-chi/chi
 - https://jwt.io
+- https://github.com/swaggo/swag
+- https://www.openapis.org
