@@ -9,6 +9,7 @@ import (
 	"github.com/CrisPassos/goexperts/08_apis/internal/entity"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/jwtauth"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -34,13 +35,25 @@ func main() {
 	r := chi.NewRouter()
 	//posso setar um logger aqui se quiser
 	r.Use(middleware.Logger)
-	r.Post("/products", productHandler.CreateProduct)
 
-	//registrando a rota com iD
-	r.Get("/products/{id}", productHandler.GetProduct)
-	r.Put("/products/{id}", productHandler.UpdateProduct)
-	r.Delete("/products/{id}", productHandler.DeleteProduct)
-	r.Get("/products", productHandler.GetAllProducts)
+	//agrupando rotas de produtos
+	r.Route("/products", func(r chi.Router) {
+		//sempre que eu acessar a url de produtos, no contexto do handler eu vou ter esse token
+		//pega o token da requisicão injeta no contexto e depois valida assinatura e se tá valido
+		r.Use(jwtauth.Verifier(configs.TokenAuth))
+		//agora vamos autenticar e verificar se o token é valido
+		r.Use(jwtauth.Authenticator)
+
+		r.Post("/", productHandler.CreateProduct)
+		r.Get("/", productHandler.GetAllProducts)
+		//registrando a rota com iD
+		r.Get("/{id}", productHandler.GetProduct)
+		r.Put("/{id}", productHandler.UpdateProduct)
+		r.Delete("/{id}", productHandler.DeleteProduct)
+
+	})
+
+	// vamos usar 2 middlewares JWTVERIFY
 
 	//registrando os usuários
 	r.Post("/users", userHandler.CreateUser)

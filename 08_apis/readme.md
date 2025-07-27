@@ -75,6 +75,8 @@ Aula de Apis no Go(lang):
   - gera um token divido em tres partes header/dados que eu passo ou payload/assinatura(sua chave secreta)
 - Gerando token JWT
 - Protegendo products
+  - Usando Bearer Token
+- Criando e trabalhando com middlewares
 
 ## Commands
 
