@@ -78,7 +78,25 @@ Aula de Multthreading no Go(lang):
   - for e range, cada vez que o for for executar ele preenche o canal e depois tem um range que vai esvaziar
   - enquando o range não liberar o canal o for não pode ser executado
 
-- ## Range with WaitGroup
+- Range with WaitGroup
+- Channel Directions
+
+  - O channel ou recebe o dados ou ele joga para uma variavel ou para alguma coisa
+  - Só temos duas direções receber ou entregar (receiver or deliver)
+
+- Criando um load Balancer
+
+  - balanceador de carga, receber a carga e equilibrar ela, criamos workers rotinas que le em paralelo para que possamos processar rapido
+  - por exemplo, servidores web
+  - meu balance joga a carga para os workers
+
+- Trabalhando com Select
+
+  - tipo um switch case para canais
+
+- Canais com Buffer
+  - é possível que o canal receba mais de uma informação ao mesmo tempo, por exemplo usando os buffers
+  - se eu tiver o buffer de 5 eu posso colocar 5 informações até o canal ficar cheio
 
 ## Commands
 
@@ -87,5 +105,3 @@ Aula de Multthreading no Go(lang):
 ```
     go run -race main.go
 ```
-
-## Links
