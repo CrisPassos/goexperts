@@ -23,6 +23,10 @@ Aula GraphQL de no Go(lang):
 - Criando resolver para Category
 - Persistindo Category via Playground
 - Fazendo queries de Category
+- Implementando CouserDB
+- Implementando QueryCourses
+- Dados encadeados
+- Finalizando encadeamento de Categorias
 
 ## commands
 
