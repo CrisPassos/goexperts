@@ -1,0 +1,12 @@
+mutation createCategory {
+  createCategory(input:{name:"POrra", description:"Merda"})
+  {id, name, description}
+}
+
+query querCategory {
+  	categories {
+      id
+      name
+    	description
+    }
+}
