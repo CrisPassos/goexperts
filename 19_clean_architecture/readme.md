@@ -1,101 +1,57 @@
-# GraphQL
+## Clean Code
 
-Aula Clean Architecture no Go(lang):
+Agora é a hora de botar a mão na massa. Para este desafio, você precisará criar o usecase de listagem das orders.
+Esta listagem precisa ser feita com:
 
-- Introdução
-- Origem da Clean Architecture
-  - Termo criado por Robert C. Martin (Uncle Bob) em 2012
-  - Tornou-se um livro
-  - Buzz word
-  - Proteção do domínio da aplicação
-  - Evolução da arquitetura exagonal
-  - Baixo acoplamento entre as camadas
-  - Orientada a caso de usos
-  - Gerar uma transformção no código
-  - Documentar, arquitetura que grita para você
-  - Curiosidades do livros:
-    - Ele fala especificamente sobre Clean Architecture somente em 7 páginas do livro
-    - Tudo que ele fala especificamente sobre Clean Architecture está literralmente em um artigo do seu blog
-    - Reforçar conhecimento e remover gaps básicos que muitas vezes nem precebemos que temos
-    - Componentes
-    - Arquitetura
-    - Limites arquiteturais
-    - Percepção sobre regras de negócios
-- Pontos importantes sobre arquitetura
-  - Formato que o software terá, ajuda a formatar o SW
-  - Divisão de componentes
-  - Comunicação entre componentes
-  - Uma boa arquitetura vai facilitar o processo de desenvolvimento, deplou, operação e manuntenção
-  - "The strategy behind that facilitation is to leave as many options open as possible, for as long as possible"
-- Keep options open
-  - O Objetivo principal da arquiteutra é dar suporte ao ciclo de vida do sistema. Uma boa arquitetura torna o sistema fácil de entender, fácil de desenvolver, fácil de manter e fácil de implantar. O objetivo final é minimizar o custo de vida útil do sistema e maximizar a produtividade do programador.
-  - ajuda evitar debitos técnicos
-  - Keep options Open - mantenha opções abertas
-  - Regras vs Detalhes
-  - Regras de negócio trazem o real valor para o Software
-  - Detalhes ajudam a suportar as regras
-  - O Software entrega as regras
-  - Os detalhes não devem impactar nas regras de negócios
-  - Frameworks, banco de dados, apis, não devem impactar as regas
-  - DDD - Atacar a complexidade no coração do software
-- Use cases
-  - Os casos de usos representam uma intenção
-  - Os casos de usam explicacam como o código funciona
-  - Clareza de cada comportamento do software
-  - detalhes não devem impactar na regras de negócios
-  - Use Cases versus SRP (Single Responsible Principel)
-    - Temos a tendência de reaproveitar use cases por serem muito parecidos.
-    - Ex: Alterar vs Inserir. Amos consultam se o registro existe, persistem dados. MAS, são Use Cases diferentes. Por que?
-    - SRP (Single Responsibility Principle) => mudam por razões diferentes que interferem no mesmo code
-  - Duplicação real vs acidental
-    - não é sobre repedir código, copiar e colar
-- O fluxo dos Use cases
-  - Uma das formas mais claras de resumir um use case é contar uma história
-  - SW no final do dia automatiza tarefas
-  - O use case dita como as regras vão operar
-- Limites arquiteturais
-  - Tudo que não impacta diretamente nas regrae de negócio deve estar em um limite arquitetural diferente. Ex: Não vai ser o FE ou o BD que mudarão as regras de negócios da aplicações.
-  - O tipo do banco de dados não impacta a regra de negócios
-  - Temos uma interface que comunica com o banco e com a regra
-  - Definir abstrações
-  - A ideia é o banco de dados chamar a regra de negocio através de uma interface e a regra de negócios acessar a inteface
-- Input vs Output
-  - No final do dia, tudo se resume a um input que retorna um output
-  - EX: Criar um pedido(dados do pedido = input)
-    Pedido criado (dados do retorno do pedido)
-  - Simplifique seu raciocinio ao criar um SW sempre pensando em INPUT e OUTPUT
-- Entendendo DTOs
-  - DTO (Data TRansfer Object)
-  - Extremamente importante e simples
-  - Trafega dados entre os limites arquiteturais, trasforma os dados antes de usar
-  - Objeto anêmico, sem comportamento, não possui regra, apenas dados
-  - Contém dados (Input ou Outputs)
-  - Não possui regras, comportamento, faz nada
-  - Cada DTO pode seguir um caminho diferente, casa use case tem um DTO de Input ou OUTPUT
-  - API -> Controller -> Use Case -> Entity
-  - Controller cria um DTO com os dados recebidos e envia para o USE CASE
-  - Use Case executa seu fluxo, pega o resultado, cria um DTO para OUTPU e retorna para o Controller
-- Presenters
-  - Objetos de transformação
-  - Adequa o DTO de output no formato correto para entregar o resultado
-  - EX: Um sistema por ter diversos formatos de entregar: Ex: XML, JSON, Protobuf, Grapqhl, CLI, etc
-  - Input = new CategoryInputDTO("name");
-  - Output = new CreateCategoryUseCase(input);
-  - jsonResult = CategoryPresenter(output).toJson()
-  - xmlREsult = CategoryPresenter(output).toXML()
-  - serealiza a informação depois de pegar o DTO
-- Entities vs DDD
-  - Entities da Clean Arch são diferentes do DDD
-  - Conceito de camada x representação única
-  - Clean Arch define entity como camada de regras de negócios
-  - elas se aplicam em qualquer situação
-  - Não há definição explicita de como criar as entities
-  - Normalmente utilizamos táticas do DDD
-  - Entities = Agregados + Domain Services
-- Nosso Objetivo
-- Entity e UseCase
-- Repositorios e EventHandler
+- Endpoint REST (GET /order)
+- Service ListOrders com GRPC
+- Query ListOrders GraphQL
 
-## Links
+Não esqueça de criar as migrações necessárias e o arquivo `api.http` com as requests para criar e listar as orders.
 
-- https://github.com/google/wire (desativado)
+Para a criação do banco de dados, utilize o Docker (`Dockerfile` / `docker-compose.yaml`), com isso ao rodar o comando `docker compose up` tudo deverá subir, preparando o banco de dados.
+
+Inclua um README.md com os passos a serem executados no desafio e a porta em que a aplicação deverá responder em cada serviço.
+
+---
+
+## Steps
+
+### 1. Subir o ambiente com Docker
+
+```bash
+docker compose up
+```
+
+### 2. Rodar a aplicação
+
+```bash
+go run main.go wire_gen.go
+```
+
+### 3. Testar os serviços
+
+#### REST API
+
+- Endpoint: `GET /order`
+- Arquivo de exemplo: `api/create_order.http`
+
+#### gRPC
+
+- Use o Evans para testar:
+
+```bash
+evans -r repl
+call CreateOrder
+```
+
+#### GraphQL
+
+- Abra no navegador:
+  [http://localhost:8080/](http://localhost:8080/)
+
+#### RabbitMQ
+
+- Abra no navegador:
+  [https://localhost:15672](https://localhost:15672)
+- Crie a fila: `amq.direct`
