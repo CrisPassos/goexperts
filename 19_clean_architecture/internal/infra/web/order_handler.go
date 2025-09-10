@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/devfullcycle/20-CleanArch/internal/entity"
-	"github.com/devfullcycle/20-CleanArch/internal/usecase"
-	"github.com/devfullcycle/20-CleanArch/pkg/events"
+	"github.com/devfullcycle/19_clean_architecture/internal/entity"
+	"github.com/devfullcycle/19_clean_architecture/internal/usecase"
+	"github.com/devfullcycle/19_clean_architecture/pkg/events"
 )
 
 type WebOrderHandler struct {
@@ -25,10 +25,6 @@ func NewWebOrderHandler(
 		OrderRepository:   OrderRepository,
 		OrderCreatedEvent: OrderCreatedEvent,
 	}
-}
-
-func NewGetAllUseCase(OrderRepository entity.OrderRepositoryInterface) *usecase.GetOrderUseCase {
-	return usecase.NewGetOrderUseCase(OrderRepository)
 }
 
 func (h *WebOrderHandler) Create(w http.ResponseWriter, r *http.Request) {
@@ -52,9 +48,9 @@ func (h *WebOrderHandler) Create(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func (h *WebOrderHandler) GetAll(w http.ResponseWriter, r *http.Request) {
-	getAllOrders := NewGetAllUseCase(h.OrderRepository)
-	input := usecase.GetOrderInputDTO{}
-	output, err := getAllOrders.Execute(input)
+	getAllOrders := usecase.NewGetOrderUseCase(h.OrderRepository)
+
+	output, err := getAllOrders.Execute()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

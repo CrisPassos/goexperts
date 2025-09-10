@@ -8,13 +8,13 @@ import (
 
 	graphql_handler "github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/devfullcycle/20-CleanArch/configs"
-	"github.com/devfullcycle/20-CleanArch/internal/event/handler"
-	"github.com/devfullcycle/20-CleanArch/internal/infra/graph"
-	"github.com/devfullcycle/20-CleanArch/internal/infra/grpc/pb"
-	"github.com/devfullcycle/20-CleanArch/internal/infra/grpc/service"
-	"github.com/devfullcycle/20-CleanArch/internal/infra/web/webserver"
-	"github.com/devfullcycle/20-CleanArch/pkg/events"
+	"github.com/devfullcycle/19_clean_architecture/configs"
+	"github.com/devfullcycle/19_clean_architecture/internal/event/handler"
+	"github.com/devfullcycle/19_clean_architecture/internal/infra/graph"
+	"github.com/devfullcycle/19_clean_architecture/internal/infra/grpc/pb"
+	"github.com/devfullcycle/19_clean_architecture/internal/infra/grpc/service"
+	"github.com/devfullcycle/19_clean_architecture/internal/infra/web/webserver"
+	"github.com/devfullcycle/19_clean_architecture/pkg/events"
 	"github.com/streadway/amqp"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -47,17 +47,19 @@ func main() {
 
 	// use cases (depende de um repositorio, base de dados e um eventDispatcher)
 	createOrderUseCase := NewCreateOrderUseCase(db, eventDispatcher)
+	getAllUserCase := NewGetOrderUseCase(db)
 
 	//WebServer
 	webserver := webserver.NewWebServer(configs.WebServerPort)
 	webOrderHandler := NewWebOrderHandler(db, eventDispatcher)
-	webserver.AddHandler("/order", webOrderHandler.Create)
+	webserver.AddHandler("POST", "/order", webOrderHandler.Create)
+	webserver.AddHandler("GET", "/order", webOrderHandler.GetAll)
 	fmt.Println("Starting web server on port", configs.WebServerPort)
 	go webserver.Start()
 
 	//GRPC
 	grpcServer := grpc.NewServer()
-	createOrderService := service.NewOrderService(*createOrderUseCase)
+	createOrderService := service.NewOrderService(*createOrderUseCase, *getAllUserCase)
 	pb.RegisterOrderServiceServer(grpcServer, createOrderService)
 	reflection.Register(grpcServer)
 
@@ -68,7 +70,6 @@ func main() {
 	}
 	go grpcServer.Serve(lis)
 
-	// GraphQL
 	srv := graphql_handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{
 		CreateOrderUseCase: *createOrderUseCase,
 	}}))

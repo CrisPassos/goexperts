@@ -3,26 +3,27 @@ package service
 import (
 	"context"
 
-	"github.com/devfullcycle/20-CleanArch/internal/infra/grpc/pb"
-	"github.com/devfullcycle/20-CleanArch/internal/usecase"
+	"github.com/devfullcycle/19_clean_architecture/internal/infra/grpc/pb"
+	"github.com/devfullcycle/19_clean_architecture/internal/usecase"
 )
 
 type OrderService struct {
 	pb.UnimplementedOrderServiceServer
 	CreateOrderUseCase usecase.CreateOrderUseCase
+	GetOrderUserCase   usecase.GetOrderUseCase
 }
 
-func NewOrderService(createOrderUseCase usecase.CreateOrderUseCase) *OrderService {
+func NewOrderService(createOrderUseCase usecase.CreateOrderUseCase, getOrderUseCase usecase.GetOrderUseCase) *OrderService {
 	return &OrderService{
 		CreateOrderUseCase: createOrderUseCase,
+		GetOrderUserCase:   getOrderUseCase,
 	}
 }
 
 func (s *OrderService) CreateOrder(ctx context.Context, in *pb.CreateOrderRequest) (*pb.CreateOrderResponse, error) {
 	dto := usecase.OrderInputDTO{
-		ID:    in.Id,
-		Price: float64(in.Price),
-		Tax:   float64(in.Tax),
+		ID:  in.Id,
+		Tax: float64(in.Tax),
 	}
 	output, err := s.CreateOrderUseCase.Execute(dto)
 	if err != nil {
@@ -36,23 +37,21 @@ func (s *OrderService) CreateOrder(ctx context.Context, in *pb.CreateOrderReques
 	}, nil
 }
 
-// func (s *OrderService) GetAllOrders(ctx context.Context, in *pb.GetAllOrdersRequest) (*pb.GetAllOrdersResponse, error) {
-// 	orders, err := s.CreateOrderUseCase.GetAll()
-// 	if err != nil {
-// 		return nil, err
-// 	}
+func (s *OrderService) GetAllOrders(ctx context.Context, b *pb.Blank) (*pb.GetOrderResponse, error) {
 
-// 	var ordersResponse []*pb.Order
-// 	for _, order := range orders {
-// 		ordersResponse = append(ordersResponse, &pb.Order{
-// 			Id:         order.ID,
-// 			Price:      float32(order.Price),
-// 			Tax:        float32(order.Tax),
-// 			FinalPrice: float32(order.FinalPrice),
-// 		})
-// 	}
+	orders, err := s.GetOrderUserCase.Execute()
+	if err != nil {
+		return nil, err
+	}
+	var pbOrders []*pb.Order
+	for _, order := range orders {
+		pbOrders = append(pbOrders, &pb.Order{
+			Id:         order.ID,
+			Price:      float32(order.Price),
+			Tax:        float32(order.Tax),
+			FinalPrice: float32(order.FinalPrice),
+		})
+	}
 
-// 	return &pb.GetAllOrdersResponse{
-// 		Orders: ordersResponse,
-// 	}, nil
-// }
+	return &pb.GetOrderResponse{Orders: pbOrders}, nil
+}

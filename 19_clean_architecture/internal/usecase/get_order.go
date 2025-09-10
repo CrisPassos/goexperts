@@ -1,12 +1,8 @@
 package usecase
 
 import (
-	"github.com/devfullcycle/20-CleanArch/internal/entity"
+	"github.com/devfullcycle/19_clean_architecture/internal/entity"
 )
-
-type GetOrderInputDTO struct {
-	ID string `json:"id"`
-}
 
 type GetOrderOutputDTO struct {
 	ID         string  `json:"id"`
@@ -20,7 +16,8 @@ type GetOrderUseCase struct {
 	OrderRepository entity.OrderRepositoryInterface
 }
 
-func NewGetOrderUseCase(OrderRepository entity.OrderRepositoryInterface) *GetOrderUseCase {
+func NewGetOrderUseCase(
+	OrderRepository entity.OrderRepositoryInterface) *GetOrderUseCase {
 	return &GetOrderUseCase{
 		OrderRepository: OrderRepository,
 	}
@@ -28,7 +25,7 @@ func NewGetOrderUseCase(OrderRepository entity.OrderRepositoryInterface) *GetOrd
 
 // Método principal do caso de uso
 // recebe o DTO de input e retorna o DTO de output
-func (c *GetOrderUseCase) Execute(input GetOrderInputDTO) ([]GetOrderOutputDTO, error) {
+func (c *GetOrderUseCase) Execute() ([]GetOrderOutputDTO, error) {
 	orders, err := c.OrderRepository.GetAll()
 	if err != nil {
 		return []GetOrderOutputDTO{}, err
