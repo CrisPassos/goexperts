@@ -28,7 +28,7 @@ func NewGetOrderUseCase(
 func (c *GetOrderUseCase) Execute() ([]GetOrderOutputDTO, error) {
 	orders, err := c.OrderRepository.GetAll()
 	if err != nil {
-		return []GetOrderOutputDTO{}, err
+		return nil, err
 	}
 	var output []GetOrderOutputDTO
 	for _, order := range orders {

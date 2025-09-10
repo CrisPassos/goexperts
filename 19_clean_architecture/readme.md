@@ -55,3 +55,5 @@ call CreateOrder
 - Abra no navegador:
   [https://localhost:15672](https://localhost:15672)
 - Crie a fila: `amq.direct`
+
+_disclaimer: em vez de adotar o nome ListOrders acabei usando GetOrders_

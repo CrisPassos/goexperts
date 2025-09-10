@@ -30,7 +30,6 @@ func (r *mutationResolver) CreateOrder(ctx context.Context, input *model.OrderIn
 	}, nil
 }
 
-// ListOrders is the resolver for the listOrders field.
 func (r *queryResolver) GetOrders(ctx context.Context) ([]*model.Order, error) {
 	list, err := r.GetOrderUseCase.Execute()
 	if err != nil {
